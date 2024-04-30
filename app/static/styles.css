@@ -1,0 +1,10 @@
+body {
+    background-color: lightblue;
+    
+}
+.loginform {
+    max-width: 200px;
+    margin: auto;
+    padding: 20px;
+    width: 100%;
+}
