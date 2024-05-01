@@ -5,25 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Web App</title>
     <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/login.css">
+    
 </head>
 <body>
-    
-    <div id="loginPage" class= "loginForm">
-        <h2>Login</h2> 
-        <form id="loginForm" class="loginForm">
-            <div class="input">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" placeholder="User name / Email" required>
-            </div>
-            <div class="input">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password"  placeholder="password"required>
-            </div>
-            <button id="loginButton" type="submit" class = "button">Login</button>
-        </form>
-    </div>
+    <div class = "container">
+        <div id="loginPage" class= "loginPage">
+            <h2 id = "logintitle">Login</h2> 
+            <form id="loginForm" class="loginForm">
+                <div class="input">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" placeholder="User name / Email" required>
+                </div>
+                <div class="input">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password"  placeholder="password"required>
+                </div>
+                <button id="loginButton" type="submit" class = "button">Login</button>
+            </form>
+        </div>
+        <div id = "login-image" class = "login-image">
+            <img src = "/static/vecteezy.jpg" alt = "login image">
+
+        </div>
 
 
     <script src="script.js"></script>
+</div>
 </body>
 </html>
