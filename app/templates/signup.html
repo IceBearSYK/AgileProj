@@ -5,27 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Web App</title>
     <link rel="stylesheet" href="/static/styles.css">
-    <link rel="stylesheet" href="/static/login.css">
+    <link rel="stylesheet" href="/static/signup.css">
     
 </head>
 <body>
     <div class = "container">
         <div id="loginPage" class= "loginPage">
             <h2 id = "logintitle">Login</h2> 
-            <form id="loginForm" class="loginForm">
+            <form id="loginForm" class="loginForm" action = "/signup" method = "POST">
                 <div class="input">
                     <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" placeholder="User name / Email" required>
+                    <input type="text" id="username" name="username" placeholder="User name" required>
+                </div>
+                <div class = "input">
+                    <label for "email"> Email:</label>
+                    <input type = "email" id = "email" name = "email" placeholder "Your email" required>
                 </div>
                 <div class="input">
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password"  placeholder="password"required>
                 </div>
-                <button id="loginButton" type="submit" class = "button">Login</button>
+                <div class = "input">
+                    <label for = "password"> Confirm password: </label>
+                    <input type = "password" id = "confpsw" name = "confpsw" placeholder = "confirm password" required>
+                <button id="loginButton" type="submit" class = "button">Sign up</button>
             </form>
-            <p class="forgotpassword">
-                <a href = "/forgotpassword"> Forgot your password?</a>
-            </p>
         </div>
         <div id = "login-image" class = "login-image">
             <img src = "/static/vecteezy.jpg" alt = "login image">

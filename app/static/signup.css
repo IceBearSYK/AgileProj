@@ -42,8 +42,8 @@ main {
 .login-image img{
     max-width: 300%;
     max-height: 300%;
-    display: block;
-    margin-left: 200px;
+    display:block;
+    margin-left: 600px;
 }
 .loginPage h2{
     margin: auto;
@@ -70,7 +70,7 @@ input {
     padding: 20px 45px 20px 20px
 }
 .input {
-    width: 200%;
+    width: 100%;
     height: 7vh;
     margin: 30px;
     margin-bottom: 40px;
