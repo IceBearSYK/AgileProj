@@ -43,7 +43,7 @@ main {
     max-width: 300%;
     max-height: 300%;
     display: block;
-    margin-left: 200px;
+    margin-left: 300px;
 }
 .loginPage h2{
     margin: auto;
@@ -88,7 +88,24 @@ input {
    
     margin-left: auto;
 }
+.button#signupButton{
+    width: 100%;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius:7px;
+    background-color:white;
+    color: black;
+    font-size: 17px;
+    margin-top: 80px;
+   
+    margin-left: auto;
+}
+
 .button:hover {
+    background-color: blue;
+    color: white;
+}
+.button#signupButton:hover {
     background-color: blue;
     color: white;
 }
