@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Web App</title>
+    
+    
     <link rel="stylesheet" href="/static/styles.css">
     <link rel="stylesheet" href="/static/login.css">
     
 </head>
 <body>
+   
     <div class = "container">
         <div id="loginPage" class= "loginPage">
             <h2 id = "logintitle">Login</h2> 
@@ -22,19 +25,18 @@
                     <input type="password" id="password" name="password"  placeholder="password"required>
                 </div>
                 <button id="loginButton" type="submit" class = "button">Login</button>
-
-                 
-
             </form>
-            
-            <button id="signupButton" class="button" onclick="location.href='/signup'">SignUp</button>
-
+            <p class="forgotpassword">
+                <a href = "/forgotpassword"> Forgot your password?</a>
+            </p>
         </div>
         <div id = "login-image" class = "login-image">
             <img src = "/static/vecteezy.jpg" alt = "login image">
 
         </div>
 
+
+    <script src="script.js"></script>
 </div>
 </body>
 </html>

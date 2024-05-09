@@ -1,0 +1,54 @@
+* { 
+    
+    box-sizing: border-box;
+}
+
+nav{ 
+    background: black;
+
+}
+
+a{ 
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+.navbar li {
+    font-size: 20px;
+    padding: 15px;
+    list-style-type: none;
+}
+.menu li a {
+    display: block;
+}
+.navbar {
+    z-index: 1000;
+    position: fixed;
+    padding: 13px ;
+    box-shadow: 0 2px 5px grey;
+    border-radius: 30px;
+    top: 5px; 
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.navitem, .navbutton, .navbutton2 {
+    padding: 5px ;
+    border-radius: 15px;
+    margin-right: 80px;
+}
+.middle {
+    display: flex;
+    flex: 2;
+    justify-content: center;
+}
+.right{
+    display: flex;
+    align-items: center;
+}
+
