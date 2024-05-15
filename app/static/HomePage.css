@@ -1,0 +1,46 @@
+/* Styles for the overall page and content container */
+body {
+    background-color: blue; /* Sets the page background to blue */
+    color: white; /* Sets text color to white for contrast */
+    font-family: Arial, sans-serif; /* Example font */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Makes the container center vertically */
+}
+
+.content-container {
+    width: 80%; /* Adjust width as needed */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds subtle shadow */
+    background-color: #f4f4f4; /* Light grey background for the container */
+    border-radius: 8px;
+}
+
+/* Styles specific to the footer button */
+.footer-button {
+    display: block; /* Makes the button extend full container width */
+    width: 100%;
+    padding: 10px 20px;
+    background-color: white;
+    color: blue;
+    border: 1px solid blue;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+}
+
+.footer-button:hover {
+    background-color: blue;
+    color: white;
+}
+
+/* Optional: Responsive adjustments */
+@media (max-width: 768px) {
+    .content-container {
+        width: 95%;
+    }
+}
