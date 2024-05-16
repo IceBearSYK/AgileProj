@@ -4,6 +4,12 @@
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
+body{
+    background-image: url(v.jpg);
+    background-size: cover; /* This property ensures that the image covers the entire background */
+    background-repeat: no-repeat; /* This property prevents the image from repeating */ 
+}
+
 main {
     height: 100;
     width: 100vw;
@@ -11,6 +17,7 @@ main {
     justify-content: center;
     align-items: center;
     background-color:  #f0f2f5;
+
 }
 
 .container {
@@ -20,15 +27,23 @@ main {
     justify-content: center;
     padding: 0;
     background-color:  #f0f2f5;
-}
-.logintitle{
+    margin-top: 100px;
+    border-radius: 20px;
     
-    right: 100%;
 }
+.container h2{
+    text-align: center;
+}
+
+.logintitle{
+    color: black;
+    align-content: center;
+}
+
 .loginPage {
     margin: 0 50px;
     width: 520px;
-    margin-top: 300px;
+    margin-bottom: 0px;
     align-items: center;
 }
 
@@ -36,23 +51,21 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px;
+    padding: 10px;
      
 }
-.login-image img{
-    max-width: 300%;
-    max-height: 300%;
-    display:block;
-    margin-left: 600px;
-}
-.loginPage h2{
-    margin: auto;
 
+.loginPage h2{
+    margin: 0;
+    width: 100%;
+    
 }
  #logintitle{
     font-size: 40px;
-    
+    align-items: center;
+    width: 100%;    
 }
+
 .input input {
     width: 100%;
     height: 100%;
@@ -69,11 +82,11 @@ input {
     color: black;
     padding: 20px 45px 20px 20px
 }
+
 .input {
     width: 100%;
     height: 7vh;
     margin: 30px;
-    margin-bottom: 40px;
 }
 
 .button {
@@ -84,10 +97,9 @@ input {
     background-color:white;
     color: black;
     font-size: 17px;
-    margin-top: 80px;
-   
-    margin-left: auto;
+    margin-top: 20px;
 }
+
 .button:hover {
     background-color: blue;
     color: white;

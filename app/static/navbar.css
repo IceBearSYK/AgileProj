@@ -27,14 +27,13 @@ a:hover {
 .navbar {
     z-index: 1000;
     position: fixed;
-    padding: 13px ;
+    padding: 0.25% ;
     box-shadow: 0 2px 5px grey;
     border-radius: 30px;
-    top: 5px; 
+    top: 1%;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     align-items: center;
 }
 .navitem, .navbutton, .navbutton2 {
