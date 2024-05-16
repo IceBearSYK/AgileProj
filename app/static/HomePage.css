@@ -1,14 +1,19 @@
 /* Styles for the overall page and content container */
 body {
-    background-color: blue; /* Sets the page background to blue */
-    color: white; /* Sets text color to white for contrast */
-    font-family: Arial, sans-serif; /* Example font */
+    
+    background-color: blue; /* Sets the page background to blue*/
+    color: black; /* Sets text color to white for contrast*/ 
+    font-family: Arial, sans-serif; /* Example font*/ 
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh; /* Makes the container center vertically */
+    align-items: first center;
+    height: 50vh; /* Makes the container center vertically */
+   
+    background-image: url('homepage2.jpeg');
+    background-size: cover; /* This property ensures that the image covers the entire background */
+    background-repeat: no-repeat; /* This property prevents the image from repeating */ 
 }
 
 .content-container {
