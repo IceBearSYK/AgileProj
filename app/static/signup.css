@@ -43,7 +43,7 @@ main {
 .loginPage {
     margin: 0 50px;
     width: 520px;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
     align-items: center;
 }
 
