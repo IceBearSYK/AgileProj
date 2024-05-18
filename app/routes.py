@@ -23,8 +23,10 @@ def login():
     return render_template('loginpage.html')
 @app.route('/logout')
 def logout():
-    session.pop("user", None)
+    print("You have been logged out: session = {session}")
+    session.pop("user")
     flash("You have been logged out")
+    print(" logout successful")
     return redirect(url_for('login'))
 
 @app.route('/signup', methods=['GET', 'POST'])
