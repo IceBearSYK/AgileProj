@@ -56,3 +56,11 @@ def MainPage():
 @app.route("/Forums")
 def Forums():
     return render_template('forum.html')
+
+@app.route("/forgotpassword")
+def forgot():
+    return render_template('forgotpassword.html')
+
+@app.route("/reset-password")
+def reset():
+    return render_template('forgotpasswordresponse.html')
