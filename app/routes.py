@@ -68,7 +68,7 @@ def reset():
 # In-memory storage for chats (for simplicity)
 chats = []
 
-@app.route('/gaming')
+@app.route('/Forums/gaming')
 def index():
     return render_template('Gaming.html')
 
