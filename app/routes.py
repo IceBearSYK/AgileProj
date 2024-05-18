@@ -52,3 +52,7 @@ def signup():
 @app.route("/HomePage")
 def MainPage():
     return render_template('HomePage.html')
+
+@app.route("/Forums")
+def Forums():
+    return render_template('forum.html')
