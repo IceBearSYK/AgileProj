@@ -13,36 +13,36 @@
     
 </head>
 <body>
-    <nav class = "navbar">
-        
-            <li class = "navitem">
-                <a href = "#"></a> 
-            </li>
-            <div class = "middle">
-            <li class = "navitem">
-                <a href = "#">Home</a> 
-            </li>
-            <li class = "navitem">
-                <a href = "#"> Forums </a> 
-            </li> </div>
-            <div class = "right">
+    <nav class="navbar">
+        <div class="navbar-left">
+            <span>Go to:</span>
+            <ul class="navbar-middle">
+                <li class="navitem">
+                    <a href="#">Home</a>
+                </li>
+                <li class="navitem">
+                    <a href="#">Forums</a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-right">
             {% if session.user %}
-                <li class = "logout">
-                    <a class ="btn btn-default btn-sm" href = "{{ url_for('logoutuser')}}">
+                <li class="logout">
+                    <a class="btn btn-default btn-sm" href="{{ url_for('logoutuser')}}">
                         <span class="glyphicon glyphicon-log-out"></span> Log out
                     </a>
+                </li>
             {% else %}
-                <li class = "navbutton">
-                    <a  class="btn btn-info btn-lg" href ="{{ url_for('login') }}">
+                <li class="navbutton">
+                    <a class="btn btn-info btn-lg" href="{{ url_for('login') }}">
                         <span class="glyphicon glyphicon-log-in"> login </span></a>  
                 </li>
-                <li class = "navbutton2">
-                    <a  class="btn btn-info btn-lg" href ="{{ url_for('signup') }}">
+                <li class="navbutton2">
+                    <a class="btn btn-info btn-lg" href="{{ url_for('signup') }}">
                         <span class="glyphicon glyphicon-circle-arrow-up"> signup </span></a> 
-                </li> </div>
-                
+                </li>
             {% endif %}
-        
+        </div>
     </nav>
 
     <div class = "container">
