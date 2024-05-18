@@ -87,19 +87,7 @@ input {
     background-color:white;
     color: black;
     font-size: 17px;
-    margin-top: 80px;
-   
-    margin-left: auto;
-}
-.button#signupButton{
-    width: 100%;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius:7px;
-    background-color:white;
-    color: black;
-    font-size: 17px;
-    margin-top: 80px;
+    margin-top: 50px;
    
     margin-left: auto;
 }
@@ -111,4 +99,18 @@ input {
 .button#signupButton:hover {
     background-color: blue;
     color: white;
+}
+
+.otherLinks {
+    display: flex; /* Use flexbox for the child elements */
+    justify-content: center; /* Align child elements horizontally */
+    align-items: center; /* Align child elements vertically */
+    
+}
+
+.otherLinks a{
+    color: blue;
+}
+.otherLinks span {
+    margin: 0 10px; /* Adjust spacing between elements */
 }
