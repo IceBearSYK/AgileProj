@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/forum.css">
+    <link rel="stylesheet" href="/static/navbar.css"
+
+</head>
+<body>
+    <nav class = "navbar">
+        
+        <li class = "navitem">
+            <a href = "#"></a> 
+        </li>
+        <div class = "middle">
+        <li class = "navitem">
+            <a href = "#">Home</a> 
+        </li>
+        <li class = "navitem">
+            <a href = "#"> Forums </a> 
+        </li> </div>
+        <div class = "right">
+        {% if session.user %}
+            <li class = "logout">
+                <a class ="btn btn-default btn-sm" href = "{{ url_for('logoutuser')}}">
+                    <span class="glyphicon glyphicon-log-out"></span> Log out
+                </a>
+        {% else %}
+            <li class = "navbutton">
+                <a  class="btn btn-info btn-lg" href ="{{ url_for('login') }}">
+                    <span class="glyphicon glyphicon-log-in"> login </span></a>  
+            </li>
+            <li class = "navbutton2">
+                <a  class="btn btn-info btn-lg" href ="{{ url_for('signup') }}">
+                    <span class="glyphicon glyphicon-circle-arrow-up"> signup </span></a> 
+            </li> </div>
+            
+        {% endif %}
+    
+    </nav>
+
+    <div class="forum-container">
+        <div class="top-section">
+            <div class="search-bar">
+                <input type="text" placeholder="Search for threads...">
+            </div>
+            <button class="submit-question">Submit a new question</button>
+        </div>
+    
+        <div class="threads-list">
+            <button class="thread">Thread 1</button>
+            <button class="thread">Thread 2</button>
+            <button class="thread">Thread 3</button>
+            <!-- More threads here -->
+        </div>
+    </div>
+
+</body>
+</html>
