@@ -1,0 +1,61 @@
+body{
+    background-image: url(v.jpg);
+    background-size: cover; /* This property ensures that the image covers the entire background */
+    background-repeat: no-repeat; /* This property prevents the image from repeating */ 
+}
+
+.forum-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 90vh;
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 60px;
+    background-color:  #f0f2f5;
+    padding-top: 80px;
+}
+
+.forum-container .top-section {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.submit-question {
+    margin-left: 20px;
+}
+
+.search-bar {
+    flex-grow: 1;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.threads-list {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.thread {
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: none;
+    background-color: #f8f9fa;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.thread:hover {
+    background-color: #ddd;
+}
