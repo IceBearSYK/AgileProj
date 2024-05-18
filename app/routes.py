@@ -11,15 +11,21 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        
+        print("HEYYY")
         user = User.query.filter_by(username=username).first()
         if user and check_password_hash(user.password, password):
             session['user'] = user.usrID
-            return render_template('HomePage.html')
+            print(f"Session data after login: {session}")
+            return redirect(url_for('home'))
         else:
             flash("Invalid username or password")
-            return render_template('loginpage.html')
+            return redirect(url_for('login'))
     return render_template('loginpage.html')
+@app.route('/logout')
+def logout():
+    session.pop("user", None)
+    flash("You have been logged out")
+    return redirect(url_for('login'))
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -31,24 +37,28 @@ def signup():
         
         if password != confirmpsw:
             flash("Passwords do not match")
-            return render_template('signup.html')
+            return redirect(url_for('signup'))
         
         if User.query.filter_by(username=username).first():
             flash("Username already exists")
-            return render_template('signup.html')
+            return redirect(url_for('signup'))
         
         if User.query.filter_by(email=email).first():
             flash("Email already exists")
-            return render_template('signup.html')
+            return redirect(url_for('signup'))
         
         passwordhash = generate_password_hash(password)
         newuser = User(username=username, email=email, password=passwordhash)
         db.session.add(newuser)
         db.session.commit()
         flash("Successfully signed up. Thank you!")
-        return render_template('loginpage.html')
+        return redirect(url_for('login'))
     return render_template('signup.html')
     
 @app.route("/HomePage")
 def MainPage():
     return render_template('HomePage.html')
+
+@app.route("/sesh")
+def checksesh():
+    return f"session right now = {session}"

@@ -13,6 +13,13 @@
     
 </head>
 <body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages%}
+                <p> {{message}} </p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     <nav class = "navbar">
         
             <li class = "navitem">
@@ -20,15 +27,15 @@
             </li>
             <div class = "middle">
             <li class = "navitem">
-                <a href = "#">Home</a> 
+                <a href = "HomePage">Home</a> 
             </li>
             <li class = "navitem">
-                <a href = "#"> Forums </a> 
+                <a href = "Forums"> Forums </a> 
             </li> </div>
             <div class = "right">
             {% if session.user %}
                 <li class = "logout">
-                    <a class ="btn btn-default btn-sm" href = "{{ url_for('logoutuser')}}">
+                    <a class ="btn btn-default btn-sm" href = "{{ url_for('logout')}}">
                         <span class="glyphicon glyphicon-log-out"></span> Log out
                     </a>
             {% else %}
@@ -44,7 +51,7 @@
             {% endif %}
         
     </nav>
-
+    <section>
     <div class = "container">
         <div id="loginPage" class= "loginPage">
             <h2 id = "logintitle">Sign up!</h2> 
@@ -65,10 +72,11 @@
                     <label for = "password"> Confirm password: </label>
                     <input type = "password" id = "confpsw" name = "confpsw" placeholder = "confirm password" required>
                 <button id="loginButton" type="submit" class = "button">Sign up</button>
-                <button id="loginButton" type="submit" class = "button">Already have an account?</button>
+                <a id="loginButton" href = "{{ url_for('login') }}" >Already have an account? Click here!</a>
 
             </form>
         </div>
+    </section>
 
 
 </div>

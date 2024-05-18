@@ -10,3 +10,5 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 from app import routes, model
+def context():
+    return {'db': db, 'User': model.User}
