@@ -1,4 +1,4 @@
-from flask import session, render_template, request, flash, redirect, url_for
+from flask import session, render_template, request, flash, redirect, url_for, jsonify
 from app import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.model import User
@@ -64,3 +64,20 @@ def forgot():
 @app.route("/reset-password")
 def reset():
     return render_template('forgotpasswordresponse.html')
+
+# In-memory storage for chats (for simplicity)
+chats = []
+
+@app.route('/gaming')
+def index():
+    return render_template('Gaming.html')
+
+@app.route('/get_chats', methods=['GET'])
+def get_chats():
+    return jsonify(chats)
+
+@app.route('/send_chat', methods=['POST'])
+def send_chat():
+    data = request.json
+    chats.append(data)
+    return jsonify({"status": "success"})
