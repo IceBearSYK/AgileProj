@@ -13,6 +13,14 @@
     
 </head>
 <body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages%}
+                <p> {{message}} </p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     <nav class="navbar">
         <div class="navbar-left">
             <span>Go to:</span>
@@ -28,17 +36,17 @@
         <div class="navbar-right">
             {% if session.user %}
                 <li class="logout">
-                    <a class="btn btn-default btn-sm" href="{{ url_for('logoutuser')}}">
+                    <a class="btn btn-default btn-sm" href="{{ url_for('logout')}}">
                         <span class="glyphicon glyphicon-log-out"></span> Log out
                     </a>
                 </li>
             {% else %}
                 <li class="navbutton">
-                    <a class="btn btn-info btn-lg" href="{{ url_for('login') }}">
+                    <a class="btn btn-default btn-sm" href="{{ url_for('login') }}">
                         <span class="glyphicon glyphicon-log-in"> login </span></a>  
                 </li>
                 <li class="navbutton2">
-                    <a class="btn btn-info btn-lg" href="{{ url_for('signup') }}">
+                    <a class="btn btn-default btn-sm" href="{{ url_for('signup') }}">
                         <span class="glyphicon glyphicon-circle-arrow-up"> signup </span></a> 
                 </li>
             {% endif %}

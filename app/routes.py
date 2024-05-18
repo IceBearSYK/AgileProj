@@ -11,19 +11,26 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        
+        print("heyyyy")
         user = User.query.filter_by(username=username).first()
         if user and check_password_hash(user.password, password):
             session['user'] = user.usrID
+            print(f"Session data after login: {session}")
+            flash("you have been logged out")
             return redirect(url_for('home'))
         else:
             flash("Invalid username or password")
+            print("invalid password")
             return redirect(url_for('login'))
     return render_template('loginpage.html')
+
+@app.route('/logout')
 def logout():
-    print("You have been logged out: session = {session}")
-    session.pop("user")
-    flash("You have been logged out")
+    print(f"You have been logged out: session = {session}")
+    session.pop("user", None)
+    if "user" in session:
+        user = session["user"]
+        flash("You have been logged out")
     print(" logout successful")
     return redirect(url_for('login'))
 
