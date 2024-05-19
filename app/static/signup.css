@@ -5,7 +5,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 body{
-    background-image: url(v.jpg);
+    background-image: url(defaultbg.jpg);
     background-size: cover; /* This property ensures that the image covers the entire background */
     background-repeat: no-repeat; /* This property prevents the image from repeating */ 
 }
@@ -43,7 +43,7 @@ main {
 .loginPage {
     margin: 0 50px;
     width: 520px;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
     align-items: center;
 }
 
@@ -61,6 +61,7 @@ main {
     
 }
  #logintitle{
+    padding-top: 20px;
     font-size: 40px;
     align-items: center;
     width: 100%;    
@@ -104,4 +105,3 @@ input {
     background-color: blue;
     color: white;
 }
-

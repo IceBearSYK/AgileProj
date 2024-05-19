@@ -13,9 +13,16 @@
 <body>
    
     <div class = "container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages%}
+                    <p> {{message}} </p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <div id="loginPage" class= "loginPage">
             <h2 id = "logintitle">Login</h2> 
-            <form id="loginForm" class="loginForm">
+            <form id="loginForm" class="loginForm" method="POST" action="{{ url_for('login') }}">
                 <div class="input">
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" placeholder="User name / Email" required>
@@ -27,15 +34,16 @@
                 <button id="loginButton" type="submit" class = "button">Login</button>
             </form>
             
-            <p class="forgotpassword">
-                <a href = "/forgotpassword"> Forgot your password?</a>
-            </p>
+            <div class="otherLinks">
+                <p class="forgotpassword">
+                    <a href = "/forgotpassword"> Forgot your password?</a>
+                </p>
+                <span> or </span>
+                <p class="noAccount"> 
+                    <a href= "/signup"> Don't have an account?</a>
+                </p>
+            </div>
         </div>
-        <div id = "login-image" class = "login-image">
-            <img src = "/static/vecteezy.jpg" alt = "login image">
-
-        </div>
-
 
     </div>
     <script src="/app/templates/login.js"></script>
