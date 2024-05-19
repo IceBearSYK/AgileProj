@@ -23,7 +23,7 @@
                     <a href="HomePage">Home</a>
                 </li>
                 <li class="Forums">
-                    <a href="{{ url_for('Forums') }}">Forums</a>
+                    <a href="/Forums">Forums</a>
                 </li>
             </ul>
         </div>
@@ -52,7 +52,7 @@
             <div class="search-bar">
                 <input type="text" id="search-input" placeholder="Search for threads...">
             </div>
-            <a href="/newforum">
+            <a href="{{ url_for('newforum') }}">
                 <button class="submit-question">Submit a new question</button>
             </a>
         </div>
