@@ -132,6 +132,9 @@ def forum(topic):
     if forum is None:
         abort(404)
     if request.method == 'POST':
+        if 'user' not in session:
+            flash('You must be logged in to post a message.')
+            return redirect(url_for('login'))
         new_message = Message(content=request.form['content'], chat_id=forum.id, user_id=session['user'])
         db.session.add(new_message)
         db.session.commit()
