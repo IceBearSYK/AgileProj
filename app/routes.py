@@ -2,12 +2,14 @@ from flask import session, render_template, request, flash, redirect, url_for, j
 from app import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.model import User, Chat, Message
+
 @app.route("/")
-def home():
+def home():           
     return redirect("/HomePage")
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -25,16 +27,20 @@ def login():
 
 @app.route('/logout')
 def logout():
+    
     print(f"You have been logged out: session = {session}")
     session.pop("user", None)
+    
     if "user" in session:
         user = session["user"]
         flash("You have been logged out")
     print(" logout successful")
+    session.clear()
     return redirect(url_for('login'))
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+    
     if request.method == 'POST':
         email = request.form['email']
         username = request.form['username']
@@ -63,6 +69,7 @@ def signup():
     
 @app.route("/HomePage")
 def MainPage():
+    
     return render_template('HomePage.html')
 
 
