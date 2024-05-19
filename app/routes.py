@@ -15,6 +15,7 @@ def login():
         user = User.query.filter_by(username=username).first()
         if user and check_password_hash(user.password, password):
             session['user'] = user.usrID
+            session['username'] = user.username
             print(f"Session data after login: {session}")
             return redirect(url_for('home'))
         else:
@@ -82,7 +83,7 @@ def reset():
     return render_template('forgotpasswordresponse.html')
 
 # In-memory storage for chats (for simplicity)
-chats = []
+
 
 @app.route('/Forums/gaming')
 def index():
@@ -90,10 +91,17 @@ def index():
 
 @app.route('/get_chats', methods=['GET'])
 def get_chats():
-    return jsonify(chats)
+    chats = Chat.query.all()
+    chat_list = [{'user_id': chat.user_id, 'message': chat.message} for chat in chats]
+    return jsonify(chat_list)
 
 @app.route('/send_chat', methods=['POST'])
 def send_chat():
+    if 'username' not in session:
+        return jsonify({"status": "error", "message": "User not logged in"}), 401
     data = request.json
-    chats.append(data)
+    new_chat = Chat(user_id=session['user'], message=data['message'])
+    print(session['user'])
+    db.session.add(new_chat)
+    db.session.commit()
     return jsonify({"status": "success"})
