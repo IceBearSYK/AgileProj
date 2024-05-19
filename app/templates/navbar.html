@@ -3,6 +3,8 @@
 <head>
     <title>Navbar Example</title>
     <link rel="stylesheet" href="/static/navbar.css">
+ 
+    
 </head>
 <body>
     <nav class="navbar">
@@ -38,5 +40,22 @@
             </ul>
         </div>
     </nav>
+    
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages%}
+
+                <div class="alert alert-{{category}} d-flex align-items-center" role="alert">
+
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+                    <p> {{message}} </p>
+                  </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
 </body>
 </html>
