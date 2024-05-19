@@ -111,3 +111,5 @@ def send_chat():
     db.session.add(new_chat)
     db.session.commit()
     return jsonify({"status": "success"})
+  
+
