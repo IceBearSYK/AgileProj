@@ -72,3 +72,12 @@ def Forums():
 @app.route("/sesh")
 def checksesh():
     return f"session right now = {session}"
+
+@app.route("/forgotpasswordresponse", methods=['GET', 'POST'])
+def forgotpasswordresponse():
+    return render_template('forgotpasswordresponse.html')
+
+@app.route("/forgotpassword", methods=['GET', 'POST'])
+def forgotpassword():
+    # Your code here
+    return render_template('forgotpassword.html')
