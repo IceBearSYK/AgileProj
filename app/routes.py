@@ -1,7 +1,7 @@
 from flask import session, render_template, request, flash, redirect, url_for, jsonify
 from app import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.model import User
+from app.model import User, Chat
 @app.route("/")
 def home():
     return redirect("/HomePage")
