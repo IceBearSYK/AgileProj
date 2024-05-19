@@ -1,7 +1,7 @@
 from flask import session, render_template, request, flash, redirect, url_for, jsonify
 from app import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.model import User, Chat
+from app.model import User, Chat, Message
 @app.route("/")
 def home():
     return redirect("/HomePage")
@@ -66,9 +66,7 @@ def signup():
 def MainPage():
     return render_template('HomePage.html')
 
-@app.route("/Forums")
-def Forums():
-    return render_template('forum.html')
+
 
 @app.route("/sesh")
 def checksesh():
@@ -82,6 +80,7 @@ def forgot():
 def reset():
     return render_template('forgotpasswordresponse.html')
 
+<<<<<<< HEAD
 @app.route('/newforum')
 def newforum():
     return render_template('newforum.html')
@@ -120,3 +119,66 @@ def send_chat():
     return jsonify({"status": "success"})
   
 
+=======
+# In-memory storage for chats (for simplicity)
+chats = []
+
+@app.route('/Forums')
+def forums():
+    forums = Chat.query.all()  # Get all forums from the database
+    return render_template('forum.html', forums=forums)
+
+@app.route('/get_chats', methods=['GET'])
+def get_chats():
+    return jsonify(chats)
+
+@app.route('/send_chat', methods=['POST'])
+def send_chat():
+    data = request.json
+    chats.append(data)
+    return jsonify({"status": "success"})
+
+@app.route('/newforum')
+def newforum():
+    return render_template('newforum.html')
+
+@app.route('/submit_new_forum', methods=['POST'])
+def submit_new_forum():
+    if 'user' not in session:
+        return redirect(url_for('login'))
+
+    topic = request.form['title']
+    username = session['user']  # Assuming the username is stored in session
+    message_content = request.form['post']
+
+    existing_chat = Chat.query.filter_by(topic=topic).first()
+    if existing_chat:
+        flash('Topic already exists. Please choose a different topic.')
+        return redirect(url_for('newforum'))
+
+    new_chat = Chat(topic=topic, username=username)
+    db.session.add(new_chat)  # Add the new forum to the session
+    db.session.commit()  # Commit the session to save the new forum to the database
+
+    # Create a new message associated with the forum
+    new_message = Message(content=message_content, chat_id=new_chat.id, user_id=session['user'])
+    db.session.add(new_message)
+    db.session.commit()
+
+    return redirect(url_for('forum', topic=topic))  # Redirect to the newly created forum
+
+@app.route('/forum/<topic>', methods=['GET', 'POST'])
+def forum(topic):
+    forum = Chat.query.filter_by(topic=topic).first()
+    if forum is None:
+        abort(404)
+    if request.method == 'POST':
+        new_message = Message(content=request.form['content'], chat_id=forum.id, user_id=session['user'])
+        db.session.add(new_message)
+        db.session.commit()
+    messages = Message.query.filter_by(chat_id=forum.id).all()
+    messages_with_users = [(message, User.query.get(message.user_id).username) for message in messages]
+    creator = User.query.get(forum.username).username
+
+    return render_template('forumtemplate.html', forum=forum, messages=messages_with_users, creator=creator)
+>>>>>>> Forums

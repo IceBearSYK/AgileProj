@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Password Reset Requested</title>
+    <title>Create New Forum</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/static/forgotpassword.css">
     <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/newforum.css">
+    <link rel="stylesheet" href="/static/forumtemplate.css">
     <link rel="stylesheet" href="/static/navbar.css">
+
 </head>
 <body>
     <nav class="navbar">
@@ -42,12 +47,20 @@
         </div>
     </nav>
 
-    <div class="forgot-password-container">
-        <h1 class="forgot-password-heading">Password Reset Requested</h1>
-        
-        <p class="forgot-password-text">Thank you, an email has been sent to reset your password.</p>
-        
-        <p class="forgot-password-text">If you don't receive an email, please check your spam folder.</p>
+    <div class="container">
+        <h1>{{ forum.topic }}</h1>
+        <p>Created by: {{ creator }}</p>
+        <ul>
+            {% for message, username in messages %}
+                <p>{{ username }}: {{ message.content }}</p>
+            {% endfor %}
+        </ul>
+        <form method="POST">
+            <textarea name="content" placeholder="Your Message"></textarea>
+            <input type="submit" value="Post Message">
+        </form>
     </div>
+
+    <script  src="/static/forumtemplate.js"></script>
 </body>
 </html>

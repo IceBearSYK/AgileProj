@@ -58,12 +58,9 @@
         </div>
     
         <div class="threads-list" id="threads-list">
-            <a class="btn btn-default btn-lg thread" href="/Forums/gaming">Gaming</a>
-            <a class="btn btn-default btn-lg thread" href="/Forums/food">Food</a>
-            <a class="btn btn-default btn-lg thread" href="/Forums/soccer">Soccer</a>
-            <a class="btn btn-default btn-lg thread" href="/Forums/fishing">Fishing</a>
-            <a class="btn btn-default btn-lg thread" href="/Forums/art">Art</a>
-            <!-- More threads here -->
+            {% for forum in forums %}
+                <a class="btn btn-default btn-lg thread" href="{{ url_for('forum', topic=forum.topic) }}">{{ forum.topic }}</a>
+            {% endfor %}
         </div>
     </div>
 
