@@ -11,6 +11,7 @@ class Chat(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     topic = db.Column(db.String(30), nullable=False)
     username = db.Column(db.String(80), nullable=False)
+    
 class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text, nullable=False)
