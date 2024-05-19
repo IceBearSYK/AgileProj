@@ -1,7 +1,7 @@
 from flask import session, render_template, request, flash, redirect, url_for, jsonify
 from app import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.model import User, Chat, ForumPost
+from app.model import User, Chat
 @app.route("/")
 def home():
     return redirect("/HomePage")
@@ -88,23 +88,45 @@ def forgot():
 def reset():
     return render_template('forgotpasswordresponse.html')
 
+# In-memory storage for chats (for simplicity)
+chats = []
+
+@app.route('/Forums')
+def forums():
+    forums = Chat.query.all()
+    return render_template('forum.html', forums=forums)
+
+@app.route('/get_chats', methods=['GET'])
+def get_chats():
+    return jsonify(chats)
+
+@app.route('/send_chat', methods=['POST'])
+def send_chat():
+    data = request.json
+    chats.append(data)
+    return jsonify({"status": "success"})
+
 @app.route('/newforum')
 def newforum():
     return render_template('newforum.html')
 
 @app.route('/submit_new_forum', methods=['POST'])
 def submit_new_forum():
-    title = request.form.get('title')
-    post = request.form.get('post')
-    username = session.get('user')
+    if 'user' not in session:
+        return redirect(url_for('login'))
 
-    if not title or not post or not username:
-        # One or more fields were empty
-        return 'Error: All fields are required', 400
+    topic = request.form['title']
+    username = session['user']  # Assuming the username is stored in session
+    message = request.form['post']
 
-    # Create a new forum post
-    new_post = ForumPost(title=title, post=post, username=username)
-    db.session.add(new_post)
+    new_chat = Chat(topic=topic, username=username, message=message)
+    db.session.add(new_chat)
     db.session.commit()
 
-    return 'Success', 200
+    flash('Message successfully posted.')
+    return redirect(url_for('forum', topic=topic))  # Redirect to the newly created forum
+
+@app.route('/Forums/<topic>')
+def forum(topic):
+    forum = Chat.query.filter_by(topic=topic).first_or_404()
+    return render_template('forumtemplate.html', forum=forum)
