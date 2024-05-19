@@ -9,9 +9,8 @@ class User(db.Model):
     chats = db.relationship('Chat', backref='user', lazy=True)
 
 
-
 class Chat(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    topic = db.Column(db.String(30), nullable=False)
-    username = db.Column(db.String(80), nullable=False)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.usrID'), nullable=False)
     message = db.Column(db.String(200), nullable=False)
+    topic = db.Column(db.String(30), nullable=False)
