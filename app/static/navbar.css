@@ -3,8 +3,11 @@
 }
 body{
     margin: 0; 
+    
 }
-
+.home-text {
+    font-family: Arial, Helvetica, sans-serif;
+}
 nav { 
     background: black;
 }
@@ -34,6 +37,7 @@ a:hover {
     top: 1%;
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
 }
@@ -55,6 +59,7 @@ a:hover {
 }
 
 .navitem {
+   
     margin-left: 10px; 
     align-items: center;
 }
@@ -67,6 +72,7 @@ a:hover {
 .navbar-right {
     display: flex;
     align-items: center;
+    margin-left: 1000px;
 }
 
 .navbar {
@@ -77,3 +83,5 @@ a {
     color: white;
     align-items: center;
 }
+
+

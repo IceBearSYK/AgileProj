@@ -1,13 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaming Forum</title>
+{%extends "public.html" %}
+{% block title %}Gaming Forum{% endblock %}
+
+{%block head%}
+    
+    
+    
     <link rel="stylesheet" href="/static/allForums.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
+
+    {%endblock%}
+    
+
+{% block body %}
     <div class="container">
         <h1>Gaming Forum</h1>
         <div id="chat-container">
@@ -19,6 +23,10 @@
         </div>
     </div>
 
-    <script  src="/static/forumsJS/gaming.js"></script>
-</body>
-</html>
+<script  src="/static/forumsJS/gaming.js"></script>
+{% endblock %}
+    
+    
+
+    
+

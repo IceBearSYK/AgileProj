@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/static/navbar.css">
     <link rel="stylesheet" href="/static/styles.css">
     <title>{% block title %}{% endblock %}</title>
@@ -18,10 +19,10 @@
    
     <nav class="navbar">
         <div class="navbar-left">
-            <span>Go to:</span>
+            <span></span>
             <ul class="navbar-middle">
                 <li class="navitem">
-                    <a href="HomePage">Home</a>
+                    <a class="fa fa-home " href="HomePage"><span class="home-text">Home</span></a>
                 </li>
                 <li class="Forums">
                     <a href="{{ url_for('Forums') }}">Forums</a>
