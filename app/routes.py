@@ -136,6 +136,7 @@ def forum(topic):
         db.session.add(new_message)
         db.session.commit()
     messages = Message.query.filter_by(chat_id=forum.id).all()
-    user = User.query.get(forum.username)
+    messages_with_users = [(message, User.query.get(message.user_id).username) for message in messages]
+    creator = User.query.get(forum.username).username
 
-    return render_template('forumtemplate.html', forum=forum, messages=messages, username=user.username)
+    return render_template('forumtemplate.html', forum=forum, messages=messages_with_users, creator=creator)
