@@ -79,30 +79,6 @@ def forgot():
 def reset():
     return render_template('forgotpasswordresponse.html')
 
-<<<<<<< HEAD
-@app.route('/newforum')
-def newforum():
-    return render_template('newforum.html')
-# In-memory storage for chats (for simplicity)
-chats = []
-
-@app.route('/Forums')
-def forums():
-    forums = Chat.query.all()  # Get all forums from the database
-    return render_template('forum.html', forums=forums)
-
-@app.route('/get_chats', methods=['GET'])
-def get_chats():
-    return jsonify(chats)
-
-@app.route('/send_chat', methods=['POST'])
-def send_chat():
-    data = request.json
-    chats.append(data)
-    return jsonify({"status": "success"})
-  
-
-=======
 # In-memory storage for chats (for simplicity)
 chats = []
 
@@ -164,4 +140,3 @@ def forum(topic):
     creator = User.query.get(forum.username).username
 
     return render_template('forumtemplate.html', forum=forum, messages=messages_with_users, creator=creator)
->>>>>>> Forums
