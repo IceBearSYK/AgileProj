@@ -20,8 +20,10 @@
                     and interests. Join communities, interact with others, and share your thoughts, ideas, and experiences!</p>
                 <footer>
                     <a href="Forums" class="btn btn-primary">Enter the Forums</a>
-                    <a href="login" class="btn btn-primary">Login</a>
-                    <a href="signup" class="btn btn-primary">Sign up</a>
+                    {% if not session.user %}
+                        <a href="login" class="btn btn-primary">Login</a>
+                        <a href="signup" class="btn btn-primary">Sign up</a>
+                    {% endif %}
                 </footer>
             </div>
         </div>
