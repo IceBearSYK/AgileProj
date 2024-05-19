@@ -9,7 +9,7 @@ def populate_db():
     # Create users
     user1 = User(username='john_doe', email='john@example.com', password='hashed_password')
     user2 = User(username='jane_doe', email='jane@example.com', password='hashed_password')
-    KeyUser=User(username='any', email='any@example.com', password='any')
+
     
     # Add users to the session
     db.session.add(user1)
