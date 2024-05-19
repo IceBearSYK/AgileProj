@@ -89,8 +89,12 @@ def newforum():
 
 
 @app.route('/Forums/gaming')
-def index():
+def gaming():
     return render_template('Gaming.html')
+
+@app.route('/Forums/fishing')
+def fishing():
+    return render_template('Fishing.html')
 
 @app.route('/get_chats', methods=['GET'])
 def get_chats():
