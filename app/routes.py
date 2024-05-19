@@ -1,4 +1,4 @@
-from flask import session, render_template, request, flash, redirect, url_for, jsonify
+from flask import abort, session, render_template, request, flash, redirect, url_for, jsonify
 from app import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.model import User, Chat, Message
@@ -15,12 +15,10 @@ def login():
         user = User.query.filter_by(username=username).first()
         if user and check_password_hash(user.password, password):
             session['user'] = user.usrID
-            session['username'] = user.username
             print(f"Session data after login: {session}")
-            flash("Successfuly logged in!", "success")
             return redirect(url_for('home'))
         else:
-            flash("Invalid username or password",  "warning")
+            flash("Invalid username or password")
             print("invalid password")
             return redirect(url_for('login'))
     return render_template('loginpage.html')
@@ -28,14 +26,11 @@ def login():
 @app.route('/logout')
 def logout():
     print(f"You have been logged out: session = {session}")
+    session.pop("user", None)
     if "user" in session:
-        session.pop("user", None)
-        flash("You have been logged out!", "success")
-        print(" logout successful")
-    else:
-        flash("Please login first", "warning")
-    
-    
+        user = session["user"]
+        flash("You have been logged out")
+    print(" logout successful")
     return redirect(url_for('login'))
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -45,26 +40,24 @@ def signup():
         username = request.form['username']
         password = request.form['password']
         confirmpsw = request.form['confpsw']
-        if not len(password) >= 12:
-            flash("Password must atleast be 12 characters long", "warning")
-            return redirect(url_for('signup'))
+        
         if password != confirmpsw:
-            flash("Passwords do not match", "warning")
+            flash("Passwords do not match")
             return redirect(url_for('signup'))
         
         if User.query.filter_by(username=username).first():
-            flash("Username already exists", "warning")
+            flash("Username already exists")
             return redirect(url_for('signup'))
         
         if User.query.filter_by(email=email).first():
-            flash("Email already exists", "warning")
+            flash("Email already exists")
             return redirect(url_for('signup'))
         
         passwordhash = generate_password_hash(password)
         newuser = User(username=username, email=email, password=passwordhash)
         db.session.add(newuser)
         db.session.commit()
-        flash("Successfully signed up. Thank you!" ,  "success")
+        flash("Successfully signed up. Thank you!")
         return redirect(url_for('login'))
     return render_template('signup.html')
     
