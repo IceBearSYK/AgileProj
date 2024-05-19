@@ -66,9 +66,10 @@ def signup():
 def MainPage():
     return render_template('HomePage.html')
 
-@app.route("/Forums")
-def Forums():
+@app.route("/forums")
+def forums():
     return render_template('forum.html')
+
 @app.route("/sesh")
 def checksesh():
     return f"session right now = {session}"
