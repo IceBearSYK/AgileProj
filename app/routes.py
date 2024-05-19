@@ -17,9 +17,10 @@ def login():
             session['user'] = user.usrID
             session['username'] = user.username
             print(f"Session data after login: {session}")
+            flash("Successfuly logged in!", "success")
             return redirect(url_for('home'))
         else:
-            flash("Invalid username or password")
+            flash("Invalid username or password",  "warning")
             print("invalid password")
             return redirect(url_for('login'))
     return render_template('loginpage.html')
@@ -27,11 +28,14 @@ def login():
 @app.route('/logout')
 def logout():
     print(f"You have been logged out: session = {session}")
-    session.pop("user", None)
     if "user" in session:
-        user = session["user"]
-        flash("You have been logged out")
-    print(" logout successful")
+        session.pop("user", None)
+        flash("You have been logged out!", "success")
+        print(" logout successful")
+    else:
+        flash("Please login first", "warning")
+    
+    
     return redirect(url_for('login'))
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -41,24 +45,26 @@ def signup():
         username = request.form['username']
         password = request.form['password']
         confirmpsw = request.form['confpsw']
-        
+        if not len(password) >= 12:
+            flash("Password must atleast be 12 characters long", "warning")
+            return redirect(url_for('signup'))
         if password != confirmpsw:
-            flash("Passwords do not match")
+            flash("Passwords do not match", "warning")
             return redirect(url_for('signup'))
         
         if User.query.filter_by(username=username).first():
-            flash("Username already exists")
+            flash("Username already exists", "warning")
             return redirect(url_for('signup'))
         
         if User.query.filter_by(email=email).first():
-            flash("Email already exists")
+            flash("Email already exists", "warning")
             return redirect(url_for('signup'))
         
         passwordhash = generate_password_hash(password)
         newuser = User(username=username, email=email, password=passwordhash)
         db.session.add(newuser)
         db.session.commit()
-        flash("Successfully signed up. Thank you!")
+        flash("Successfully signed up. Thank you!" ,  "success")
         return redirect(url_for('login'))
     return render_template('signup.html')
     

@@ -63,3 +63,8 @@ a:hover {
     display: flex;
     align-items: center;
 }
+
+.navbar {
+    position: relative;
+    z-index: 1;
+}
