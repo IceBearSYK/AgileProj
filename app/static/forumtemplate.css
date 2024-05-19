@@ -5,15 +5,32 @@ body {
     background-color: #f0f0f0;
 }
 
+body{
+    background-image: url(v.jpg);
+    background-size: cover; /* This property ensures that the image covers the entire background */
+    background-repeat: no-repeat; /* This property prevents the image from repeating */ 
+}
+
+
 .container {
-    max-width: 800px;
+    display: flex;
+    height: 90vh;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
     margin: 0 auto;
-    padding: 20px;
+    margin-top: 60px;
+    background-color: #f0f2f5;
+    padding-top: 40px;
+    border-radius: 20px;
+    padding-bottom: 30px;
 }
 
 h1 {
     text-align: center;
+    font-size: 40px;
     color: #333;
+    margin-bottom: 20px;
 }
 
 #chat-container {
@@ -44,4 +61,12 @@ h1 {
     background-color: #007BFF;
     color: white;
     cursor: pointer;
+}
+.container input[type="text"], .container textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin-top: 0; /* Explicitly set to 0 */
+    margin-bottom: 8px;
+    box-sizing: border-box;
+    font-size: 14px;
 }
