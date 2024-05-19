@@ -1,25 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Web App</title>
+{%extends "public.html" %}
+{% block title %}Log in Page{% endblock %}
+
+{%block head%}
     
     
     <link rel="stylesheet" href="/static/styles.css">
     <link rel="stylesheet" href="/static/login.css">
     
-</head>
-<body>
-   
+{%endblock%}
+    
+
+{% block body %}
+
     <div class = "container">
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages%}
-                    <p> {{message}} </p>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
         <div id="loginPage" class= "loginPage">
             <h2 id = "logintitle">Login</h2> 
             <form id="loginForm" class="loginForm" method="POST" action="{{ url_for('login') }}">
@@ -45,7 +38,8 @@
             </div>
         </div>
 
+        <script src="/static/login.js"></script>
     </div>
-    <script src="/static/login.js"></script>
-</body>
-</html>
+{% endblock %}
+    
+    

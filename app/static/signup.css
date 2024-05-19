@@ -23,6 +23,7 @@ main {
 .container {
     flex: 2;
     width: 40%;
+
     display: flex;
     justify-content: center;
     padding: 0;
@@ -36,6 +37,7 @@ main {
 }
 
 .logintitle{
+    padding-top: 10px;
     color: black;
     align-content: center;
 }
@@ -52,6 +54,7 @@ main {
     flex-direction: column;
     align-items: center;
     padding: 10px;
+    padding-bottom: 80px;
      
 }
 
@@ -61,7 +64,7 @@ main {
     
 }
  #logintitle{
-    padding-top: 20px;
+    
     font-size: 40px;
     align-items: center;
     width: 100%;    
