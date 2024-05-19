@@ -1,7 +1,7 @@
 from flask import session, render_template, request, flash, redirect, url_for, jsonify
 from app import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.model import User, Chat
+from app.model import User, Chat, ForumPost
 @app.route("/")
 def home():
     return redirect("/HomePage")
@@ -101,3 +101,20 @@ def send_chat():
 @app.route('/newforum')
 def newforum():
     return render_template('newforum.html')
+
+@app.route('/submit_new_forum', methods=['POST'])
+def submit_new_forum():
+    title = request.form.get('title')
+    post = request.form.get('post')
+    username = session.get('user')
+
+    if not title or not post or not username:
+        # One or more fields were empty
+        return 'Error: All fields are required', 400
+
+    # Create a new forum post
+    new_post = ForumPost(title=title, post=post, username=username)
+    db.session.add(new_post)
+    db.session.commit()
+
+    return 'Success', 200
