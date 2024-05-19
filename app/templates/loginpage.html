@@ -13,13 +13,7 @@
 <body>
    
     <div class = "container">
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages%}
-                    <p> {{message}} </p>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
+        
         <div id="loginPage" class= "loginPage">
             <h2 id = "logintitle">Login</h2> 
             <form id="loginForm" class="loginForm" method="POST" action="{{ url_for('login') }}">
