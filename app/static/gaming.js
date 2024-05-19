@@ -4,7 +4,8 @@ function fetchChats() {
         method: 'GET',
         success: function(response) {
             $('#chat-container').empty();
-            response.forEach(function(chat) {
+            response.forEach(function(chat) 
+            {
                 $('#chat-container').append(`<div class="chat"><strong>${chat.username}:</strong> ${chat.message}</div>`);
             });
         }
