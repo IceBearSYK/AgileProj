@@ -90,11 +90,13 @@ def newforum():
 
 @app.route('/Forums/gaming')
 def index():
+    session['topic'] = 'Gaming'
     return render_template('Gaming.html')
 
 @app.route('/get_chats', methods=['GET'])
 def get_chats():
-    chats = Chat.query.all()
+    topic = session['topic']
+    chats = Chat.query.filter_by(topic=topic).all()
     response=[]
     for chat in chats:
         user = User.query.filter_by(usrID=chat.user_id).first()
@@ -109,8 +111,9 @@ def send_chat():
     if 'username' not in session:
         return jsonify({"status": "error", "message": "User not logged in"}), 401
     data = request.json
-    new_chat = Chat(user_id=session['user'], message=data['message'])
+    new_chat = Chat(user_id=session['user'], message=data['message'], topic=session['topic'] )
     print(session['user'])
+    print(session['topic'])
     db.session.add(new_chat)
     db.session.commit()
     return jsonify({"status": "success"})
