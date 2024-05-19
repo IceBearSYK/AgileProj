@@ -22,7 +22,7 @@
                     <a href="HomePage">Home</a>
                 </li>
                 <li class="Forums">
-                    <a href="{{ url_for('Forums') }}">Forums</a>
+                    <a href="{{ url_for('forums') }}">Forums</a>
                 </li>
             </ul>
         </div>
@@ -45,18 +45,19 @@
             {% endif %}
         </div>
     </nav>
-    
+
     <div class="container">
-        <h1>{{ forum.topic }} Forum</h1>
-        <div id="chat-container">
-            <!-- Chats will be dynamically loaded here -->
-            {% for message in forum.messages %}
-            <p>{{ message.username }}: {{ message.text }}</p>
+        <h1>{{ forum.topic }}</h1>
+        <p>Created by {{ forum.username }}</p>
+        <ul>
+            {% for message in messages %}
+                <li>{{ message.content }}</li>
             {% endfor %}
-        </div>
-        <div class="chat-input">
-            <input type="text" id="chat-message" placeholder="Type your message here...">
-            <button onclick="sendChat()">Send</button>
+        </ul>
+        <form method="POST">
+            <textarea name="content" placeholder="Your Message"></textarea>
+            <input type="submit" value="Post Message">
+        </form>
         </div>
     </div>
 
