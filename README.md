@@ -8,13 +8,12 @@ The backend consists of a series of tables contructed on SQLite connected to the
 Through the combination fo these elements, the application allows users to navigate the webpage, create accounts, create forums and post on others forums.
 
 
-
-|   UWA ID    |   Name   | Github Username |
-|-------------|----------|----------       |
-|  22975178   |   Dirk   | AfricanAlien    |
-|  23161121   |   Abdi   | FonkayPonkay    |
-| Row 3       | Data 5   | Data 6          |
-|             |          |                 |
+|   UWA ID    |   Name           | Github Username |
+|-------------|------------------|-----------------|
+|  22975178   |       Dirk       | AfricanAlien    |
+|  23941353   | Rayan.Tarawneh   | RayanTarawneh   |
+|  23161121   | Abdi.Muhudin     | FonkayPonkay    |
+|             |                  |                 |
 
 
 
