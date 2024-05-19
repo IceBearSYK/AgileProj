@@ -1,7 +1,7 @@
-from flask import session, render_template, request, flash, redirect, url_for
+from flask import session, render_template, request, flash, redirect, url_for, jsonify
 from app import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.model import User
+from app.model import User, Chat
 @app.route("/")
 def home():
     return redirect("/HomePage")
@@ -66,19 +66,34 @@ def signup():
 def MainPage():
     return render_template('HomePage.html')
 
-@app.route("/forums")
-def forums():
+@app.route("/Forums")
+def Forums():
     return render_template('forum.html')
-
 @app.route("/sesh")
 def checksesh():
     return f"session right now = {session}"
 
-@app.route("/forgotpasswordresponse", methods=['GET', 'POST'])
-def forgotpasswordresponse():
+@app.route("/forgotpassword", methods=['GET', 'POST'])
+def forgot():
+    return render_template('forgotpassword.html')
+
+@app.route("/reset-password" , methods=['GET', 'POST'] )
+def reset():
     return render_template('forgotpasswordresponse.html')
 
-@app.route("/forgotpassword", methods=['GET', 'POST'])
-def forgotpassword():
-    # Your code here
-    return render_template('forgotpassword.html')
+# In-memory storage for chats (for simplicity)
+chats = []
+
+@app.route('/Forums/gaming')
+def index():
+    return render_template('Gaming.html')
+
+@app.route('/get_chats', methods=['GET'])
+def get_chats():
+    return jsonify(chats)
+
+@app.route('/send_chat', methods=['POST'])
+def send_chat():
+    data = request.json
+    chats.append(data)
+    return jsonify({"status": "success"})
