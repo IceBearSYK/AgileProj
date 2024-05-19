@@ -134,7 +134,7 @@ def forum(topic):
     if forum is None:
         abort(404)
     if request.method == 'POST':
-        new_message = Message(content=request.form['content'], chat_id=forum.id, user_id=session['user_id'])
+        new_message = Message(content=request.form['content'], chat_id=forum.id, user_id=session['user'])
         db.session.add(new_message)
         db.session.commit()
     messages = Message.query.filter_by(chat_id=forum.id).all()
