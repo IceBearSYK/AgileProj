@@ -1,7 +1,7 @@
 from flask import session, render_template, request, flash, redirect, url_for, jsonify
 from app import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.model import User, Chat
+from app.model import User, Chat, Message
 @app.route("/")
 def home():
     return redirect("/HomePage")
@@ -65,9 +65,7 @@ def signup():
 def MainPage():
     return render_template('HomePage.html')
 
-@app.route("/Forums")
-def Forums():
-    return render_template('forum.html')
+
 
 @app.route("/sesh")
 def checksesh():
@@ -86,7 +84,7 @@ chats = []
 
 @app.route('/Forums')
 def forums():
-    forums = Chat.query.all()
+    forums = Chat.query.all()  # Get all forums from the database
     return render_template('forum.html', forums=forums)
 
 @app.route('/get_chats', methods=['GET'])
@@ -110,16 +108,27 @@ def submit_new_forum():
 
     topic = request.form['title']
     username = session['user']  # Assuming the username is stored in session
-    message = request.form['post']
+    message_content = request.form['post']
 
-    new_chat = Chat(topic=topic, username=username, message=message)
-    db.session.add(new_chat)
+    new_chat = Chat(topic=topic, username=username)
+    db.session.add(new_chat)  # Add the new forum to the session
+    db.session.commit()  # Commit the session to save the new forum to the database
+
+    # Create a new message associated with the forum
+    new_message = Message(content=message_content, chat_id=new_chat.id, user_id=session['user'])
+    db.session.add(new_message)
     db.session.commit()
 
-    flash('Message successfully posted.')
     return redirect(url_for('forum', topic=topic))  # Redirect to the newly created forum
 
-@app.route('/Forums/<topic>')
+@app.route('/forum/<topic>', methods=['GET', 'POST'])
 def forum(topic):
-    forum = Chat.query.filter_by(topic=topic).first_or_404()
-    return render_template('forumtemplate.html', forum=forum)
+    forum = Chat.query.filter_by(topic=topic).first()
+    if forum is None:
+        abort(404)
+    if request.method == 'POST':
+        new_message = Message(content=request.form['content'], chat_id=forum.id, user_id=session['user_id'])
+        db.session.add(new_message)
+        db.session.commit()
+    messages = Message.query.filter_by(chat_id=forum.id).all()
+    return render_template('forumtemplate.html', forum=forum, messages=messages)
