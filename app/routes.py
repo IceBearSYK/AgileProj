@@ -15,6 +15,7 @@ def login():
         user = User.query.filter_by(username=username).first()
         if user and check_password_hash(user.password, password):
             session['user'] = user.usrID
+            session['username'] = user.username
             print(f"Session data after login: {session}")
             flash("Successfuly logged in!", "success")
             return redirect(url_for('home'))
@@ -87,23 +88,41 @@ def forgot():
 def reset():
     return render_template('forgotpasswordresponse.html')
 
+@app.route('/newforum')
+def newforum():
+    return render_template('newforum.html')
 # In-memory storage for chats (for simplicity)
-chats = []
+
 
 @app.route('/Forums/gaming')
-def index():
+def gaming():
     return render_template('Gaming.html')
+
+@app.route('/Forums/fishing')
+def fishing():
+    return render_template('Fishing.html')
 
 @app.route('/get_chats', methods=['GET'])
 def get_chats():
-    return jsonify(chats)
+    chats = Chat.query.all()
+    response=[]
+    for chat in chats:
+        user = User.query.filter_by(usrID=chat.user_id).first()
+        response.append({
+            'username': user.username,
+            'message': chat.message
+        })
+    return jsonify(response)
 
 @app.route('/send_chat', methods=['POST'])
 def send_chat():
-    if "user" in session:
-        data = request.json
-        chats.append(data)
-        return jsonify({"status": "success"})
-    else:
-        return jsonify({"status": "error"}) # returns erro status if a person tries to send chat without being logged in
-        
+    if 'username' not in session:
+        return jsonify({"status": "error", "message": "User not logged in"}), 401
+    data = request.json
+    new_chat = Chat(user_id=session['user'], message=data['message'])
+    print(session['user'])
+    db.session.add(new_chat)
+    db.session.commit()
+    return jsonify({"status": "success"})
+  
+
