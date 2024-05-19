@@ -10,10 +10,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/static/styles.css">
     <link rel="stylesheet" href="/static/newforum.css">
-<<<<<<< HEAD
     <link rel="stylesheet" href="/static/forumtemplate.css">
-=======
->>>>>>> 614e86a5ed9585c436ffa01d386fb1758017ec32
     <link rel="stylesheet" href="/static/navbar.css">
 
 </head>
@@ -52,27 +49,16 @@
 
     <div class="container">
         <h1>{{ forum.topic }}</h1>
-<<<<<<< HEAD
         <p>Created by: {{ creator }}</p>
         <ul>
             {% for message, username in messages %}
                 <p>{{ username }}: {{ message.content }}</p>
-=======
-        <p>Created by {{ forum.username }}</p>
-        <ul>
-            {% for message in messages %}
-                <li>{{ message.content }}</li>
->>>>>>> 614e86a5ed9585c436ffa01d386fb1758017ec32
             {% endfor %}
         </ul>
         <form method="POST">
             <textarea name="content" placeholder="Your Message"></textarea>
             <input type="submit" value="Post Message">
         </form>
-<<<<<<< HEAD
-=======
-        </div>
->>>>>>> 614e86a5ed9585c436ffa01d386fb1758017ec32
     </div>
 
     <script  src="/static/forumtemplate.js"></script>
