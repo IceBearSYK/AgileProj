@@ -1,20 +1,51 @@
-{%extends "public.html" %}
-{% block title %}Forum List{% endblock %}
-
-{%block head%}
-    
-    
-    
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Forums</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/static/styles.css">
     <link rel="stylesheet" href="/static/forum.css">
     <link rel="stylesheet" href="/static/navbar.css">
-    {%endblock%}
-    
 
-{% block body %}
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <span>Go to:</span>
+            <ul class="navbar-middle">
+                <li class="navitem">
+                    <a href="HomePage">Home</a>
+                </li>
+                <li class="Forums">
+                    <a href="/Forums">Forums</a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-right">
+            {% if session.user %}
+                <li class="logout">
+                    <a class="btn btn-default btn-sm" href="{{ url_for('logout')}}">
+                        <span class="glyphicon glyphicon-log-out"></span> Log out
+                    </a>
+                </li>
+            {% else %}
+                <li class="navbutton">
+                    <a class="btn btn-default btn-sm" href="{{ url_for('login') }}">
+                        <span class="glyphicon glyphicon-log-in"> login </span></a>  
+                </li>
+                <li class="navbutton2">
+                    <a class="btn btn-default btn-sm" href="{{ url_for('signup') }}">
+                        <span class="glyphicon glyphicon-circle-arrow-up"> signup </span></a> 
+                </li>
+            {% endif %}
+        </div>
+    </nav>
 
     <div class="forum-container">
         <div class="top-section">
@@ -25,7 +56,7 @@
                 <button class="submit-question">Submit a new question</button>
             </a>
         </div>
-
+    
         <div class="threads-list" id="threads-list">
             {% for forum in forums %}
                 <a class="btn btn-default btn-lg thread" href="{{ url_for('forum', topic=forum.topic) }}">{{ forum.topic }}</a>
@@ -34,6 +65,6 @@
     </div>
 
     <script src="/static/forum.js"></script>  
-{% endblock %}
-    
-    
+
+</body>
+</html>
