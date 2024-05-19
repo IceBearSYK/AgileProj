@@ -5,16 +5,16 @@ function fetchChats() {
         success: function(response) {
             $('#chat-container').empty();
             response.forEach(function(chat) {
-                $('#chat-container').append(`<div class="chat"><strong>${chat.user_id}:</strong> ${chat.message}</div>`);
+                $('#chat-container').append(`<div class="chat"><strong>${chat.username}:</strong> ${chat.message}</div>`);
             });
         }
     });
-  }
-  
-  function sendChat() {
+}
+
+function sendChat() {
     const message = $('#chat-message').val();
     if (message.trim() === "") return;
-  
+
     $.ajax({
         url: '/send_chat',
         method: 'POST',
@@ -30,8 +30,8 @@ function fetchChats() {
             }
         }
     });
-  }
-  
-  // Fetch chats every 2 seconds
-  setInterval(fetchChats, 2000);
+}
+
+// Fetch chats every 2 seconds
+setInterval(fetchChats, 2000);
   

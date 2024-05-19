@@ -92,8 +92,14 @@ def index():
 @app.route('/get_chats', methods=['GET'])
 def get_chats():
     chats = Chat.query.all()
-    chat_list = [{'user_id': chat.user_id, 'message': chat.message} for chat in chats]
-    return jsonify(chat_list)
+    response=[]
+    for chat in chats:
+        user = User.query.filter_by(usrID=chat.user_id).first()
+        response.append({
+            'username': user.username,
+            'message': chat.message
+        })
+    return jsonify(response)
 
 @app.route('/send_chat', methods=['POST'])
 def send_chat():
