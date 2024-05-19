@@ -112,10 +112,15 @@ def newforum():
 def submit_new_forum():
     if 'user' not in session:
         return redirect(url_for('login'))
-
+    
     topic = request.form['title']
     username = session['user']  # Assuming the username is stored in session
     message_content = request.form['post']
+
+    existing_chat = Chat.query.filter_by(topic=topic).first()
+    if existing_chat:
+        flash('Topic already exists. Please choose a different topic.')
+        return redirect(url_for('newforum'))
 
     new_chat = Chat(topic=topic, username=username)
     db.session.add(new_chat)  # Add the new forum to the session
