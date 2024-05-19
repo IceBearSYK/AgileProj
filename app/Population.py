@@ -4,6 +4,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from app import app, db
 from app.model import User, Chat, Message
+from werkzeug.security import generate_password_hash
 
 # Create an application context
 with app.app_context():
@@ -14,8 +15,9 @@ with app.app_context():
     db.session.commit()
 
     # Create new entries
-    user1 = User(username='user1', email='user1@example.com', password='password1')
-    user2 = User(username='user2', email='user2@example.com', password='password2')
+    password='password1'
+    user1 = User(username='Bob', email='Bob@example.com', password= generate_password_hash(password))
+    user2 = User(username='Steven', email='Steven@example.com', password= generate_password_hash(password))
 
     db.session.add(user1)
     db.session.add(user2)
