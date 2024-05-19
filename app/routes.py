@@ -82,3 +82,7 @@ def forgotpasswordresponse():
 def forgotpassword():
     # Your code here
     return render_template('forgotpassword.html')
+
+@app.route('/newforum')
+def newforum():
+    return render_template('newforum.html')
