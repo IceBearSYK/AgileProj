@@ -82,6 +82,9 @@ def forgot():
 def reset():
     return render_template('forgotpasswordresponse.html')
 
+@app.route('/newforum')
+def newforum():
+    return render_template('newforum.html')
 # In-memory storage for chats (for simplicity)
 
 
