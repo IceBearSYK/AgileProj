@@ -42,7 +42,7 @@ main {
 .loginPage {
     margin: 0 50px;
     width: 520px;
-    margin-bottom: 10px;
+    margin-bottom: auto;
     align-items: center;
 }
 
@@ -103,4 +103,8 @@ input {
 .button:hover {
     background-color: blue;
     color: white;
+}
+
+#loginButton {
+    color: black
 }
