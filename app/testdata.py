@@ -1,5 +1,5 @@
 from app import db
-from app.model import Chat
+from app.model import user
 
-new_chat = Chat(username='v', message='hello')
-db.session.add(new_chat)
+Fonkay = user(username = "fonkyponkay", email= "fonkayp4k@gmail.com", password = "Hithere123")
+db.session.add(Fonkay)

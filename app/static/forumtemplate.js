@@ -1,6 +1,8 @@
+var topic = window.location.pathname.split('/')[2]; // Extract the forum topic from the URL
+
 function fetchChats() {
   $.ajax({
-      url: '/get_chats',
+      url: '/get_chats/' + topic,
       method: 'GET',
       success: function(response) {
           $('#chat-container').empty();
@@ -17,7 +19,7 @@ function sendChat() {
   if (message.trim() === "") return;
 
   $.ajax({
-      url: '/send_chat',
+      url: '/send_chat/' + topic,
       method: 'POST',
       contentType: 'application/json',
       data: JSON.stringify({username: username, message: message}),

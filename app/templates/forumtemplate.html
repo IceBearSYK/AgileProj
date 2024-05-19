@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Create New Forum</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/static/navbar.css">
     <link rel="stylesheet" href="/static/styles.css">
-    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/newforum.css">
+    <link rel="stylesheet" href="/static/forumtemplate.css">
+    <link rel="stylesheet" href="/static/navbar.css">
 
-    {% block head %}{% endblock %}
-    
-    
 </head>
 <body>
-   
     <nav class="navbar">
         <div class="navbar-left">
-            <span></span>
+            <span>Go to:</span>
             <ul class="navbar-middle">
                 <li class="navitem">
-                    <a class="fa fa-home " href="HomePage"><span class="home-text">Home</span></a>
+                    <a href="/HomePage">Home</a>
                 </li>
                 <li class="Forums">
-                    <a href="{{ url_for('Forums') }}">Forums</a>
+                    <a href="{{ url_for('forums') }}">Forums</a>
                 </li>
             </ul>
         </div>
@@ -49,26 +47,20 @@
         </div>
     </nav>
 
+    <div class="container">
+        <h1>{{ forum.topic }}</h1>
+        <p>Created by: {{ creator }}</p>
+        <ul>
+            {% for message, username in messages %}
+                <p>{{ username }}: {{ message.content }}</p>
+            {% endfor %}
+        </ul>
+        <form method="POST">
+            <textarea name="content" placeholder="Your Message"></textarea>
+            <input type="submit" value="Post Message">
+        </form>
+    </div>
 
-    <div class="flashcontainer">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages%}
-
-                <div class="alert alert-{{category}} d-flex align-items-center" role="alert">
-                    
-                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
-                    <p> {{message}} </p>
-                  </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-    <div>
-
-    <main>
-        {%block body %}{% endblock%}
-    </main>
-    
+    <script  src="/static/forumtemplate.js"></script>
 </body>
-
 </html>

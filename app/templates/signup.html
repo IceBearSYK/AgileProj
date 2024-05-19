@@ -1,17 +1,57 @@
-{%extends "public.html" %}
-{% block title %}Sign Up Page{% endblock %}
-
-{%block head%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/static/styles.css">
     <link rel="stylesheet" href="/static/signup.css">
+    <link rel="stylesheet" href="/static/navbar.css">
     
-{%endblock%}
-    
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages%}
+                <p> {{message}} </p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 
-{% block body %}
+    <nav class="navbar">
+        <div class="navbar-left">
+            <span>Go to:</span>
+            <ul class="navbar-middle">
+                <li class="navitem">
+                    <a href="HomePage">Home</a>
+                </li>
+                <li class="Forums">
+                    <a href="{{ url_for('forums') }}">Forums</a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-right">
+            {% if session.user %}
+                <li class="logout">
+                    <a class="btn btn-default btn-sm" href="{{ url_for('logout')}}">
+                        <span class="glyphicon glyphicon-log-out"></span> Log out
+                    </a>
+                </li>
+            {% else %}
+                <li class="navbutton">
+                    <a class="btn btn-default btn-sm" href="{{ url_for('login') }}">
+                        <span class="glyphicon glyphicon-log-in"> login </span></a>  
+                </li>
+                <li class="navbutton2">
+                    <a class="btn btn-default btn-sm" href="{{ url_for('signup') }}">
+                        <span class="glyphicon glyphicon-circle-arrow-up"> signup </span></a> 
+                </li>
+            {% endif %}
+        </div>
+    </nav>
 
     <div class = "container">
         <div id="loginPage" class= "loginPage">
@@ -39,4 +79,5 @@
 
 
 </div>
-{% endblock %}
+</body>
+</html>

@@ -15,7 +15,6 @@ nav {
 a { 
     color: white;
     align-items: center;
-    text-decoration: none;
 }
 
 a:hover {
@@ -33,7 +32,7 @@ a:hover {
     position: fixed;
     padding: 0.25%;
     box-shadow: 0 2px 5px grey;
-    border-radius: 0px;
+    border-radius: 30px;
     top: 1%;
     width: 100%;
     display: flex;
@@ -55,7 +54,6 @@ a:hover {
     margin-left: 10px; 
     padding: 0;
     align-items: center;
-    flex: 1;
 }
 
 .navitem {
@@ -65,7 +63,7 @@ a:hover {
 }
 
 .navbutton, .navbutton2, .logout {
-    margin-left: 10px;
+    margin-left: 20px;
     border-radius: 15px;
 }
 
