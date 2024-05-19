@@ -97,3 +97,6 @@ def send_chat():
     data = request.json
     chats.append(data)
     return jsonify({"status": "success"})
+@app.route('/newforum')
+def newforum():
+    return render_template('newforum.html')

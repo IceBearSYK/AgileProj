@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Forums</title>
+    <title>Create New Forum</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forgot Password</title>
@@ -9,11 +9,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/static/styles.css">
-    <link rel="stylesheet" href="/static/forum.css">
+    <link rel="stylesheet" href="/static/newforum.css">
     <link rel="stylesheet" href="/static/navbar.css">
 
 </head>
-
 <body>
     <nav class="navbar">
         <div class="navbar-left">
@@ -23,7 +22,7 @@
                     <a href="HomePage">Home</a>
                 </li>
                 <li class="Forums">
-                    <a href="{{ url_for('Forums') }}">Forums</a>
+                    <a href="{{ url_for('forums') }}">Forums</a>
                 </li>
             </ul>
         </div>
@@ -46,28 +45,15 @@
             {% endif %}
         </div>
     </nav>
-
-    <div class="forum-container">
-        <div class="top-section">
-            <div class="search-bar">
-                <input type="text" id="search-input" placeholder="Search for threads...">
-            </div>
-            <a href="/newforum">
-                <button class="submit-question">Submit a new question</button>
-            </a>
-        </div>
-    
-        <div class="threads-list" id="threads-list">
-            <a class="btn btn-default btn-lg thread" href="/Forums/gaming">Gaming</a>
-            <a class="btn btn-default btn-lg thread" href="/Forums/food">Food</a>
-            <a class="btn btn-default btn-lg thread" href="/Forums/soccer">Soccer</a>
-            <a class="btn btn-default btn-lg thread" href="/Forums/fishing">Fishing</a>
-            <a class="btn btn-default btn-lg thread" href="/Forums/art">Art</a>
-            <!-- More threads here -->
-        </div>
+    <div class="container">
+        <h1>Create New Post</h1>
+        <form action="/submit_new_forum" method="post">
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title" required><br>
+            <label for="post">Post:</label><br>
+            <textarea id="post" name="post" rows="7" cols="50" required></textarea><br>
+            <input type="submit" value="Submit">
+        </form>
     </div>
-
-    <script src="/static/forum.js"></script>  
-
 </body>
 </html>
