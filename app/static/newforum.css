@@ -1,0 +1,70 @@
+* {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-image: url(v.jpg);
+    background-size: cover; /* This property ensures that the image covers the entire background */
+    background-repeat: no-repeat; /* This property prevents the image from repeating */ 
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 60px;
+    background-color: #f0f2f5;
+    padding-top: 40px;
+    border-radius: 20px;
+    padding-bottom: 30px;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.container label {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 24px;
+    margin-bottom: 0; /* Explicitly set to 0 */
+}
+
+.container input[type="text"], .container textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin-top: 0; /* Explicitly set to 0 */
+    margin-bottom: 8px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.container input[type="submit"] {
+    width: 100%;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 7px;
+    background-color: white;
+    color: black;
+    font-size: 17px;
+    margin-top: 20px;
+}
+
+.container input[type="submit"]:hover {
+    background-color: blue;
+    color: #f8f8f8;
+}
+
+.container h1 {
+    text-align: center;
+    font-size: 40px;
+    color: #333;
+    margin-bottom: 20px;
+}

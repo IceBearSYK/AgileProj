@@ -14,6 +14,7 @@ body{
     margin-top: 60px;
     background-color:  #f0f2f5;
     padding-top: 80px;
+    border-radius: 20px;
 }
 
 .forum-container .top-section {
@@ -32,9 +33,10 @@ body{
 }
 
 .search-bar input {
-    width: 100%;
+    width: 95%;
     padding: 12px 20px;
     margin: 8px 0;
+    margin-left: 20px;
     box-sizing: border-box;
 }
 
@@ -57,4 +59,23 @@ body{
     text-align: center; /* Center text within the buttons */
     margin-bottom: 10px; /* Add margin between buttons */
     
+}
+
+button.submit-question {
+    display: inline-block;
+    margin-top: 8px;
+    margin-right: 20px;
+    padding: 10px 20px;
+    color: black;
+    background-color: white;
+    border-radius: 7px;
+    font-size: 17px;
+    transition: background-color 0.3s ease;
+    border: none; /* Removes the default button border */
+    cursor: pointer; /* Changes the cursor to a hand when hovering over the button */
+}
+
+button.submit-question:hover {
+    background-color: blue;
+    color: white;
 }
