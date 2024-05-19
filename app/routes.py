@@ -1,4 +1,4 @@
-from flask import session, render_template, request, flash, redirect, url_for, jsonify
+from flask import abort, session, render_template, request, flash, redirect, url_for, jsonify
 from app import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.model import User, Chat, Message
@@ -15,7 +15,6 @@ def login():
         user = User.query.filter_by(username=username).first()
         if user and check_password_hash(user.password, password):
             session['user'] = user.usrID
-            session['username'] = user.username
             print(f"Session data after login: {session}")
             return redirect(url_for('home'))
         else:
@@ -85,37 +84,21 @@ def reset():
 def newforum():
     return render_template('newforum.html')
 # In-memory storage for chats (for simplicity)
+chats = []
 
-
-@app.route('/Forums/gaming')
-def gaming():
-    return render_template('Gaming.html')
-
-@app.route('/Forums/fishing')
-def fishing():
-    return render_template('Fishing.html')
+@app.route('/Forums')
+def forums():
+    forums = Chat.query.all()  # Get all forums from the database
+    return render_template('forum.html', forums=forums)
 
 @app.route('/get_chats', methods=['GET'])
 def get_chats():
-    chats = Chat.query.all()
-    response=[]
-    for chat in chats:
-        user = User.query.filter_by(usrID=chat.user_id).first()
-        response.append({
-            'username': user.username,
-            'message': chat.message
-        })
-    return jsonify(response)
+    return jsonify(chats)
 
 @app.route('/send_chat', methods=['POST'])
 def send_chat():
-    if 'username' not in session:
-        return jsonify({"status": "error", "message": "User not logged in"}), 401
     data = request.json
-    new_chat = Chat(user_id=session['user'], message=data['message'])
-    print(session['user'])
-    db.session.add(new_chat)
-    db.session.commit()
+    chats.append(data)
     return jsonify({"status": "success"})
   
 
