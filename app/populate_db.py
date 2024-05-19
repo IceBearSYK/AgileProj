@@ -8,9 +8,7 @@ from app.model import User, Chat, Message
 def populate_db():
     # Create users
     user1 = User(username='john_doe', email='john@example.com', password='hashed_password')
-    user2 = User(username='jane_doe', email='jane@example.com', password='hashed_password')
-    KeyUser=User(username='any', email='any@example.com', password='any')
-    
+    user2 = User(username='jane_doe', email='jane@example.com', password='hashed_password')    
     # Add users to the session
     db.session.add(user1)
     db.session.add(user2)
