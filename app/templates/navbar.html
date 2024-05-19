@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Navbar Example</title>
+    <link rel="stylesheet" href="/static/navbar.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <span>Go to:</span>
+            <ul class="navbar-middle">
+                <li class="navitem">
+                    <a href="{{ url_for('MainPage') }}">Home</a>
+                </li>
+                <li class="navitem">
+                    <a href="{{ url_for('forums') }}">Forums</a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-right">
+            <ul class="navbar-buttons">
+                {% if session.user %}
+                    <li class="logout">
+                        <a class="btn btn-default btn-sm" href="{{ url_for('logout') }}">
+                            <span class="glyphicon glyphicon-log-out"></span> Log out
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="navbutton">
+                        <a class="btn btn-default btn-sm" href="{{ url_for('login') }}">
+                            <span class="glyphicon glyphicon-log-in"> login </span></a>  
+                    </li>
+                    <li class="navbutton2">
+                        <a class="btn btn-default btn-sm" href="{{ url_for('signup') }}">
+                            <span class="glyphicon glyphicon-circle-arrow-up"> signup </span></a> 
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</body>
+</html>

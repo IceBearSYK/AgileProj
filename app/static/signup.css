@@ -6,8 +6,8 @@
 }
 body{
     background-image: url(defaultbg.jpg);
-    background-size: cover; /* This property ensures that the image covers the entire background */
-    background-repeat: no-repeat; /* This property prevents the image from repeating */ 
+    background-size: cover;
+    background-repeat: no-repeat; 
 }
 
 main {
@@ -27,7 +27,6 @@ main {
     justify-content: center;
     padding: 0;
     background-color:  #f0f2f5;
-    margin-top: 100px;
     border-radius: 20px;
     
 }

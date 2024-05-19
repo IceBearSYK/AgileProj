@@ -5,6 +5,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 body{
+    
     background-image: url(defaultbg.jpg);
     background-size: cover; /* This property ensures that the image covers the entire background */
     background-repeat: no-repeat; /* This property prevents the image from repeating */ 
@@ -27,7 +28,6 @@ main {
     background-color:  #f0f2f5;
     border-radius: 20px;
     margin: auto;
-    margin-top: 20px;
 }
 
 .logintitle{
