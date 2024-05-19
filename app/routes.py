@@ -69,6 +69,7 @@ def MainPage():
 @app.route("/Forums")
 def Forums():
     return render_template('forum.html')
+
 @app.route("/sesh")
 def checksesh():
     return f"session right now = {session}"
