@@ -110,6 +110,11 @@ def submit_new_forum():
     username = session['user']  # Assuming the username is stored in session
     message_content = request.form['post']
 
+    existing_chat = Chat.query.filter_by(topic=topic).first()
+    if existing_chat:
+        flash('Topic already exists. Please choose a different topic.')
+        return redirect(url_for('newforum'))
+
     new_chat = Chat(topic=topic, username=username)
     db.session.add(new_chat)  # Add the new forum to the session
     db.session.commit()  # Commit the session to save the new forum to the database
@@ -131,4 +136,6 @@ def forum(topic):
         db.session.add(new_message)
         db.session.commit()
     messages = Message.query.filter_by(chat_id=forum.id).all()
-    return render_template('forumtemplate.html', forum=forum, messages=messages)
+    user = User.query.get(forum.username)
+
+    return render_template('forumtemplate.html', forum=forum, messages=messages, username=user.username)
