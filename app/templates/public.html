@@ -49,10 +49,11 @@
     </nav>
 
 
-    
+    <div class="flashcontainer">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages%}
+
                 <div class="alert alert-{{category}} d-flex align-items-center" role="alert">
                     
                     <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
@@ -61,10 +62,11 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
+    <div>
 
-        <main>
-            {%block body %}{% endblock%}
-        </main>
+    <main>
+        {%block body %}{% endblock%}
+    </main>
     
 </body>
 
