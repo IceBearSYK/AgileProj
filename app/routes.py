@@ -1,7 +1,7 @@
 from flask import session, render_template, request, flash, redirect, url_for, jsonify
 from app import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.model import User, Chat
+from app.model import User, Chat, ForumPost
 @app.route("/")
 def home():
     return redirect("/HomePage")
@@ -91,41 +91,20 @@ def reset():
 @app.route('/newforum')
 def newforum():
     return render_template('newforum.html')
-# In-memory storage for chats (for simplicity)
 
+@app.route('/submit_new_forum', methods=['POST'])
+def submit_new_forum():
+    title = request.form.get('title')
+    post = request.form.get('post')
+    username = session.get('user')
 
-@app.route('/Forums/gaming')
-def gaming():
-    session['topic'] = 'Gaming'
-    return render_template('Gaming.html')
+    if not title or not post or not username:
+        # One or more fields were empty
+        return 'Error: All fields are required', 400
 
-@app.route('/Forums/fishing')
-def fishing():
-    return render_template('Fishing.html')
-
-@app.route('/get_chats', methods=['GET'])
-def get_chats():
-    topic = session['topic']
-    chats = Chat.query.filter_by(topic=topic).all()
-    response=[]
-    for chat in chats:
-        user = User.query.filter_by(usrID=chat.user_id).first()
-        response.append({
-            'username': user.username,
-            'message': chat.message
-        })
-    return jsonify(response)
-
-@app.route('/send_chat', methods=['POST'])
-def send_chat():
-    if 'username' not in session:
-        return jsonify({"status": "error", "message": "User not logged in"}), 401
-    data = request.json
-    new_chat = Chat(user_id=session['user'], message=data['message'], topic=session['topic'] )
-    print(session['user'])
-    print(session['topic'])
-    db.session.add(new_chat)
+    # Create a new forum post
+    new_post = ForumPost(title=title, post=post, username=username)
+    db.session.add(new_post)
     db.session.commit()
-    return jsonify({"status": "success"})
-  
 
+    return 'Success', 200
