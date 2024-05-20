@@ -9,12 +9,12 @@ Through the combination fo these elements, the application allows users to navig
 
 
 
-|   UWA ID    |   Name   | Github Username |
-|-------------|----------|----------       |
-|  22975178   |   Dirk   | AfricanAlien    |
-| Row 2       | Data 3   | Data 4          |
-| Row 3       | Data 5   | Data 6          |
-|             |          |                 |
+|   UWA ID    |      Name       | Github Username |
+|-------------|-----------------|----------       |
+|  22975178   | Dirk Haasbroek  | AfricanAlien    |
+|  23161121   | Abdi Muhudin    | FonkayPonkay    |
+|  23941353   | Rayan Tarawneh  | RayanTarawneh   |
+|  23102103   | Imran Elmi      | IceBearSYK      |
 
 
 
