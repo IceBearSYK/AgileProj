@@ -143,3 +143,13 @@ def forum(topic):
     creator = User.query.get(forum.username).username
 
     return render_template('forumtemplate.html', forum=forum, messages=messages_with_users, creator=creator)
+
+@app.route('/delete_message/<int:message_id>', methods=['POST'])
+def delete_message(message_id):
+    message = Message.query.get(message_id)
+    if message:
+        db.session.delete(message)
+        db.session.commit()
+        return jsonify({'status': 'success'})
+    else:
+        return jsonify({'status': 'error', 'message': 'Message not found'}), 404

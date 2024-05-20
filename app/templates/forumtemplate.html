@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="/static/styles.css">
     <link rel="stylesheet" href="/static/newforum.css">
     <link rel="stylesheet" href="/static/forumtemplate.css">
-
 </head>
 <body>
     {% include 'navbar.html' %}
@@ -19,17 +18,27 @@
     <div class="container">
         <h1>{{ forum.topic }}</h1>
         <p>Created by: {{ creator }}</p>
-        <ul>
+        <div class="message-container">
             {% for message, username in messages %}
-                <p>{{ username }}: {{ message.content }}</p>
+                <div class="message">
+                    <div class="user-info">
+                        <span class="username">{{ username }}</span>
+                    </div>
+                    <div class="message-content">
+                        <p>{{ message.content }}</p>
+                    </div>
+                    {% if session['user'] == message.user_id %}
+                        <span class="delete-message glyphicon glyphicon-trash" aria-hidden="true" data-message-id="{{ message.id }}"></span>
+                    {% endif %}
+                </div>
             {% endfor %}
-        </ul>
-        <form method="POST">
+        </div>
+        <form id="message-form" method="POST">
             <textarea name="content" placeholder="Your Message"></textarea>
             <input type="submit" value="Post Message">
         </form>
     </div>
 
-    <script  src="/static/forumtemplate.js"></script>
+    <script src="/static/forumtemplate.js"></script>
 </body>
 </html>
