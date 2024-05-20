@@ -84,7 +84,7 @@ chats = []
 
 @app.route('/Forums')
 def forums():
-    forums = Chat.query.all()  # Get all forums from the database
+    forums = list(reversed(Chat.query.all()))  # Get all forums from the database
     return render_template('forum.html', forums=forums)
 
 @app.route('/get_chats', methods=['GET'])
