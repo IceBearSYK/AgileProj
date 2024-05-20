@@ -1,0 +1,19 @@
+.message-container {
+    width: 100%;
+}
+
+.message {
+    margin-bottom: 10px;
+}
+
+.user-info {
+    font-weight: bold;
+}
+
+.message-content p {
+    margin: 0; /* Remove default paragraph margin */
+}
+
+.delete-message {
+    float: right;
+}

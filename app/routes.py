@@ -138,8 +138,19 @@ def forum(topic):
         new_message = Message(content=request.form['content'], chat_id=forum.id, user_id=session['user'])
         db.session.add(new_message)
         db.session.commit()
+        return redirect(url_for('forum', topic=topic))  # Redirect to prevent form resubmission
     messages = Message.query.filter_by(chat_id=forum.id).all()
     messages_with_users = [(message, User.query.get(message.user_id).username) for message in messages]
     creator = User.query.get(forum.username).username
 
     return render_template('forumtemplate.html', forum=forum, messages=messages_with_users, creator=creator)
+
+@app.route('/delete_message/<int:message_id>', methods=['POST'])
+def delete_message(message_id):
+    message = Message.query.get(message_id)
+    if message:
+        db.session.delete(message)
+        db.session.commit()
+        return jsonify({'status': 'success'})
+    else:
+        return jsonify({'status': 'error', 'message': 'Message not found'}), 404
