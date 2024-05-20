@@ -138,6 +138,7 @@ def forum(topic):
         new_message = Message(content=request.form['content'], chat_id=forum.id, user_id=session['user'])
         db.session.add(new_message)
         db.session.commit()
+        return redirect(url_for('forum', topic=topic))  # Redirect to prevent form resubmission
     messages = Message.query.filter_by(chat_id=forum.id).all()
     messages_with_users = [(message, User.query.get(message.user_id).username) for message in messages]
     creator = User.query.get(forum.username).username
